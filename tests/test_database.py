@@ -1,16 +1,17 @@
 from services.database_service import DatabaseService
+from services.model_service import ModelService
+
+model_service = ModelService()
 
 
 def test_data_load():
-    data = DatabaseService().get_data()
+    data = DatabaseService(model_service).get_data()
     assert data.shape[0] > 0
 
 
-def test_column_text_exists():
-    data = DatabaseService().get_data()
+def test_columns_exist():
+    data = DatabaseService(model_service).get_data()
     assert 'text' in data.columns
-
-
-def test_column_icd_exists():
-    data = DatabaseService().get_data()
     assert 'icd_code' in data.columns
+    assert 'embeddings' in data.columns
+

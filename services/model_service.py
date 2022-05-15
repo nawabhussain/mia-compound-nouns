@@ -10,4 +10,4 @@ class ModelService:
 
     @staticmethod
     def cos_sim(embeddings_1, embeddings_2):
-        return util.pytorch_cos_sim(embeddings_1, embeddings_2)
+        return util.pytorch_cos_sim(embeddings_1, embeddings_2).cpu().numpy()[0][0]
