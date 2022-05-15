@@ -34,6 +34,3 @@ def predict_icd(payload: Payload):
     if payload and payload.text:
         icd_code = ds.fetch_icd(payload.text)
         return {"icd_code": icd_code}
-    else:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail=f'The parameter text was not found in the request')

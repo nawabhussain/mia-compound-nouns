@@ -7,7 +7,7 @@ client = TestClient(app)
 
 def test_missing_key():
     response = client.post("/predict_icd", json={})
-    assert response.status_code == 400
+    assert response.status_code == 422
 
 
 def test_missing_request():
