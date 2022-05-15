@@ -1,2 +1,2 @@
-# mia-compound-nouns
-NLP Challenge: Compound Nouns
+# MIA NLP Challenge
+## Compound Nouns
