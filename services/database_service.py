@@ -1,12 +1,13 @@
 import pandas as pd
 from pandas import DataFrame
 
+from ApplicationConstants import DATA_PATH
 from services.model_service import ModelService
 
 
 class DatabaseService:
     def __init__(self, model_service: ModelService):
-        self.data = pd.read_csv(r'../data/data.csv', sep=";")
+        self.data = pd.read_csv(DATA_PATH + r'/data.csv', sep=";")
         self.model_service = model_service
         self.data['embeddings'] = self.data['text'].apply(self.model_service.get_embeddings)
 
