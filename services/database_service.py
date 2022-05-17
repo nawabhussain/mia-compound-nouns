@@ -26,7 +26,7 @@ class DatabaseService:
         :return: DataFrame
         """
         data = self.data.copy()
-        request_text_embeddings = self.model_service.get_embeddings(request_text)
+        request_text_embeddings = self.model_service.get_embeddings([request_text])
         data['score'] = data['embeddings'].apply(self.model_service.cos_sim, args=(request_text_embeddings, ))
         data.sort_values('score', ascending=False, inplace=True)
         return data
