@@ -24,7 +24,7 @@ ds = DatabaseService(model_service)
 
 
 @app.post("/predict_icd")
-def predict_icd(payload: Payload):
+def predict_icd(payload: Payload) -> str:
     """
     Retrieves ICD Code for input text by identifying similar entries in the database
     :rtype: Dict
@@ -32,5 +32,7 @@ def predict_icd(payload: Payload):
     :return: A Dictionary with the result ICD Code
     """
     if payload and payload.text:
-        icd_code = ds.fetch_icd(payload.text)
-        return {"icd_code": icd_code}
+        return ds.fetch_icd(payload.text)
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail=f'A correct request was not received')
